@@ -1,4 +1,4 @@
-# 🚜 Chat-PFR Presentation
+# 🚜 Rally LLM Talk
 When: Aug 31, 2023.
 Where: Rally Innovation Conference, Downtown Indianapolis
 Audience: Entrepreneurs, Founders, VCs, CxO folks
