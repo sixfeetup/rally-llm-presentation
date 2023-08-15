@@ -40,6 +40,9 @@ Once we sorted out where get the proprietary information, the major obstacles we
 ## 👻 To whom am I talking?  Are they in the room now?
 
 We created ‘personalities’ with their own system prompts and index/retrieve strategies.
+![models](./images/models.png)
+![models](./images/model.png)
+
 And we collected every question and answer.
 Questions could have many answers, and answers could have many critiques.
 
@@ -53,6 +56,7 @@ On the human side, we tracked chat sessions of questions and answers and had per
 
 All of this is bundled up in Django application using the admin so that new AIs, doc sources and critiques could be added added through the web. 
 
+
 The chat interface is a simple session history with an input box at the bottom.
 Slash commands are enabled for meta actions like starting new sessions, switching and debugging sessions and other meta commands like /remember, /forget and /braindump.
 
@@ -60,10 +64,24 @@ This is all largely a generic low-cost approach that can be applied across simil
 
 
 ## 🕶️ What’s it look like?
-
-Since the chat interface is really just a list and box embedded on a page, we went with the second simplest approach of using HTMX to get a dynamic UI that can be built on the server side or the client side.  Basically we wanted the reactive experience of a single page app with the development timeline of a server-side generated UI.
+![Chat Session](./images/chat_session.png)
+Since the chat interface is really just a list and box embedded on a page, 
+we went with the second simplest approach of using HTMX to get a dynamic UI that can be built 
+on the server side or the client side.  
+Basically we wanted the reactive experience of a single page app with the development timeline 
+of a server-side generated UI.
 
 
 
 ## 🚧 🛠️ I wanna play.  What’s the easiest way to start?
+How complex at this stage?   pyenv? venv? docker? docker-compose? k8s?
+
+This presentation is in a repo that has a docker-compose file that will bring up a full environment with all the bells and whistles.  It is a bit of a beast, but it is the easiest way to get started.
+https://github.com/sixfeetup/rally-llm-presentation
+make check
+
+make setup
+source ./.venv/bin/activate
+
+
 
