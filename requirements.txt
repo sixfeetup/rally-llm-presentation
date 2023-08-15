@@ -3,7 +3,7 @@ llm==0.5
 
 # for the advanced demos
 chromadb  # ==0.4.4 causes llm to downgrade to 0.4.1
-langchain ==0.0.249
+langchain # ==0.0.249
 openai==0.27.8
 tiktoken==0.4.0
 unstructured==0.8.8
