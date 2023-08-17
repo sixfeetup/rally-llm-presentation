@@ -1,6 +1,3 @@
-# for the naive demos
-llm==0.5
-
 # for the advanced demos
 chromadb  # ==0.4.4 causes llm to downgrade to 0.4.1
 langchain # ==0.0.249
