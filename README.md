@@ -78,10 +78,14 @@ How complex at this stage?   pyenv? venv? docker? docker-compose? k8s?
 
 This presentation is in a repo that has a docker-compose file that will bring up a full environment with all the bells and whistles.  It is a bit of a beast, but it is the easiest way to get started.
 https://github.com/sixfeetup/rally-llm-presentation
-make check
 
-make setup
-source ./.venv/bin/activate
+Once checked out, run:
+
+   $ make check
+
+   $ make setup
+
+   $ source ./.venv/bin/activate
 
 
 
