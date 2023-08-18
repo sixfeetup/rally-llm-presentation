@@ -36,6 +36,8 @@ check: ## System check
 clean:
 	-rm -rf .langchain_ven
 	-rm -rf .llm_venv
+	-rm -rf data
+	-rm -rf persist
 
 setup: check clean .langchain_venv .llm_venv   ## Setup the development environment.  You should only have to run this once.
 	@echo "$(GREEN)Setting up development environment...$(END)"
@@ -65,7 +67,31 @@ as-code:  ## LLM use as code
 	llm keys path
 	.llm_venv/bin/python as_code.py
 
-as-code-with-more-control:  ## LLM use as code with more control over the process.
+data:
+	@echo "$(GREEN)Setting up rally data...$(END)"
+	- mkdir data || true
+	- (cd data && wget --mirror \
+                -I /speakers-2023/,/all/,/speakers/,/sponsors/,/partners/ \
+                --no-parent \
+                --follow-tags=a \
+                --reject '*.js,*.css,*.ico,*.txt,*.gif,*.jpg,*.jpeg,*.png,*.mp3,*.pdf,*.tgz,*.flv,*.avi,*.mpeg,*.iso' \
+                --ignore-tags=img,link,script \
+                --header="Accept: text/html" \
+        https://rallyinnovation.com/ ) || true
+
+extract: data
+	@echo "$(GREEN)Extracting...$(END)"
+	@lynx --help >/dev/null 2>&1 || brew install lynx || echo "You need to install lynx to extract the data."
+	-echo find data -name "*.html" -exec sh -c 'lynx -dump -nolist "$$0" > "$${0%.html}.txt"' {} \;
+	-find data -name "*.html" -exec sh -c 'lynx -dump -nolist "$$0" > "$${0%.html}.txt"' {} \;
+	-find data/rallyinnovation.com/all -name "*.html" -exec sh -c './extract_all.py "$$0" > "$${0%.html}.txt"' {} \;
+	-find data/rallyinnovation.com/speakers-2023 -name "*.html" -exec sh -c './extract_speaker.py "$$0" > "$${0%.html}.txt"' {} \;
+
+	@echo "$(GREEN)... Done.$(END)"
+
+
+
+as-code-with-more-control: data ## LLM use as code with more control over the process.
 	.langchain_venv/bin/python as_code_more_control.py
 
 ## Advanced
