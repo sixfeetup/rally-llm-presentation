@@ -15,12 +15,18 @@ from langchain.indexes.vectorstore import VectorStoreIndexWrapper
 from langchain.llms import OpenAI
 from langchain.vectorstores import Chroma
 
+# Enable to save to disk & reuse the model (for repeated queries on the same data)
+# PERSIST = True
+PERSIST = False
+DEBUG = False
+
 
 def get_local_credentials():
     keypath = subprocess.check_output(
         ".venv/bin/llm keys path".split(), text=True
     ).strip()
-    print(keypath)
+    if DEBUG:
+        print(keypath)
     with open(keypath) as f:
         return json.load(f)["openai"]
 
@@ -29,10 +35,6 @@ async def loop(k=3):
     os.environ["OPENAI_API_KEY"] = os.environ.get(
         "OPENAI_API_KEY", get_local_credentials()
     )
-
-    # Enable to save to disk & reuse the model (for repeated queries on the same data)
-    # PERSIST = True
-    PERSIST = False
 
     query = None
     if len(sys.argv) > 1:
@@ -78,8 +80,9 @@ async def loop(k=3):
                 query, run_manager=chain.callback_manager
             )
 
-        for i, doc in enumerate(found_docs):
-            print(f"DEBUG: {i + 1}.", doc.page_content, "\n")
+        if DEBUG:
+            for i, doc in enumerate(found_docs):
+                print(f"DEBUG: {i + 1}.", doc.page_content, "\n", file=sys.stderr)
 
         result = chain({"question": query, "chat_history": chat_history})
         print(result["answer"])
