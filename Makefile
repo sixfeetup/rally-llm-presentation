@@ -71,7 +71,7 @@ data:
 	@echo "$(GREEN)Setting up rally data...$(END)"
 	- mkdir data || true
 	- (cd data && wget --mirror \
-                -I /speakers-2023/,/all/,/speakers/,/sponsors/,/partners/ \
+                -I /speakers-2023/,/all/,/speakers/,/sponsors/,/partners/,/agenda/ \
                 --no-parent \
                 --follow-tags=a \
                 --reject '*.js,*.css,*.ico,*.txt,*.gif,*.jpg,*.jpeg,*.png,*.mp3,*.pdf,*.tgz,*.flv,*.avi,*.mpeg,*.iso' \
