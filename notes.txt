@@ -1,3 +1,0 @@
-    llm 0.5 depends pydantic>=2.0.0
-    langchain depends on autodoc-pydantic which requires pydantic<2 and >=1
-

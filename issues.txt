@@ -1,0 +1,6 @@
+    llm 0.5 depends pydantic>=2.0.0
+    langchain depends on autodoc-pydantic which requires pydantic<2 and >=1
+
+Also, most of the pagination on the site seems broken,
+and we might want a special processor for the schedule because of the way the page separates the date of each talk from the actual talk.
+
