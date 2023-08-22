@@ -79,7 +79,7 @@ data:
                 --header="Accept: text/html" \
         https://rallyinnovation.com/ ) || true
 
-extract: data
+extract: data  ## crawl the site and extract the data
 	@echo "$(GREEN)Extracting...$(END)"
 	@lynx --help >/dev/null 2>&1 || brew install lynx || echo "You need to install lynx to extract the data."
 	-echo find data -name "*.html" -exec sh -c 'lynx -dump -nolist "$$0" > "$${0%.html}.txt"' {} \;
