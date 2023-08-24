@@ -39,7 +39,7 @@ clean:
 	-rm -rf data
 	-rm -rf persist
 
-setup: check clean .langchain_venv .llm_venv   ## Setup the development environment.  You should only have to run this once.
+setup: check .langchain_venv .llm_venv   ## Setup the development environment.  You should only have to run this once.
 	@echo "$(GREEN)Setting up development environment...$(END)"
 	@echo
 	@echo
