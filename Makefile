@@ -91,8 +91,8 @@ extract: data  ## crawl the site and extract the data
 
 
 
-as-code-with-more-control: data ## LLM use as code with more control over the process.
-	.langchain_venv/bin/python as_code_more_control.py
+langchain-example: data ## LLM use as code using langchain with more control over the process.
+	.langchain_venv/bin/python langchain_example.py
 
 ## Advanced
 contact:  ## Contact us to productionize.

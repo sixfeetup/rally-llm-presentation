@@ -12,4 +12,21 @@ SPEAKER
 Calvin Hendryx-Parker
 CTO / Six Feet Up
 No posts found
+Innovate with AI: Build ChatGPT-like Apps
+August 31, 2023 | 11:00am – 11:45am
+ALL
+| Room 144-145
+Join us for an interactive workshop where businesses, both large and small, can unlock the potential of AI and Large Language Models (LLMs) to create their own ChatGPT-like applications. Discover how to extract proprietary data insights, accelerate data-driven decision-making, boost productivity, and drive innovation across industries.
+What do you need to know before building your own app? There’s a lot of code behind the OpenAI chat box. Calvin will review real-world examples and share best practices for how to:
+Master data gathering and extraction from multiple sources, including the challenging realm of PDFs.
+Build an AI framework using Django and HTMX, integrating powerful AI models from OpenAI, LangChain, and Llama Index.
+Test the framework to enhance the accuracy and relevancy of responses.
+Transform data into a format that AI “bots” can understand and learn from.
+Deploy the app using Kubernetes, simulating a cloud environment for easy replication on various machines.
+As a bonus, all attendees will gain access to a GitHub repository packed with Python code (the ‘lingua franca of AI’) and ChatGPT-like app examples ready to be spun up on-site. Get ready to delve into the world of AI and transform your business like never before!
+SPEAKER
+Calvin Hendryx-Parker
+CTO / Six Feet Up
+No posts found
+Share
 

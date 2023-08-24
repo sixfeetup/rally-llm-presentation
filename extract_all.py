@@ -23,7 +23,8 @@ else:
     # print("Element not found!")
 
 title_time_element = soup.select_one(
-    "body > div.elementor.elementor-1493.elementor-location-single.post-9073.post.type-post.status-publish.has-post-thumbnail.hentry.category-all > section > div > div > div > section.elementor-section.elementor-inner-section.elementor-element.elementor-element-6dbbdcb.elementor-section-boxed.elementor-section-height-default > div > div.elementor-column.elementor-col-50.elementor-inner-column.elementor-element.elementor-element-b538cd9 > div"
+    # "body > div.elementor.elementor-1493.elementor-location-single.post-9073.post.type-post.status-publish.has-post-thumbnail.hentry.category-all > section > div > div > div > section.elementor-section.elementor-inner-section.elementor-element.elementor-element-6dbbdcb.elementor-section-boxed.elementor-section-height-default > div > div.elementor-column.elementor-col-50.elementor-inner-column.elementor-element.elementor-element-b538cd9 > div"
+    "body > div.elementor.elementor-1493.elementor-location-single"  # .post-10748.post.type-post.status-publish.has-post-thumbnail.hentry.category-all"  # > section > div > div > div"
 )
 if title_time_element:
     extracted_text = title_time_element.get_text(separator="\n", strip=True)
