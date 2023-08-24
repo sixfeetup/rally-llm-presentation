@@ -54,7 +54,7 @@ async def loop(k=3):
         index = VectorstoreIndexCreator().from_loaders([loader])
 
     chain = ConversationalRetrievalChain.from_llm(
-        llm=ChatOpenAI(model="gpt-3.5-turbo"),
+        llm=ChatOpenAI(model="gpt-4"),  # "gpt-3.5-turbo"),
         retriever=index.vectorstore.as_retriever(
             search_kwargs={"k": k, "return_source_documents": True}
         ),
@@ -67,6 +67,11 @@ async def loop(k=3):
             query = input("Prompt: ")
         if query in ["quit", "q", "exit"]:
             sys.exit()
+
+        query = (
+            "Moderators are speakers. Talks, presentations and sessions are the same thing. "
+            + query
+        )
 
         # debugging the retrieval
         if PERSIST:
