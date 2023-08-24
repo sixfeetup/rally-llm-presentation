@@ -64,7 +64,7 @@ async def loop(k=3):
     chat_history = []  # the simplest memory possible
     while True:
         if not query:
-            query = input("Prompt: ")
+            query = input("\nPrompt: ")
         if query in ["quit", "q", "exit"]:
             sys.exit()
 
