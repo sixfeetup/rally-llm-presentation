@@ -44,8 +44,8 @@ setup: check clean .langchain_venv .llm_venv   ## Setup the development environm
 	@echo
 	@echo
 	@echo "Now you need your OpenAI API key.  Go to https://beta.openai.com/account/api-keys and create a new key."
-	@.venv/bin/llm keys set openai
-	@#.venv/bin/llm logs off
+	@.llm_venv/bin/llm keys set openai
+	@#.llm_venv/bin/llm logs off
 	@echo "$(GREEN)... Done.$(END)"
 
 ## Beginner

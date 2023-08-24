@@ -23,7 +23,7 @@ DEBUG = False
 
 def get_local_credentials():
     keypath = subprocess.check_output(
-        ".venv/bin/llm keys path".split(), text=True
+        ".llm_venv/bin/llm keys path".split(), text=True
     ).strip()
     if DEBUG:
         print(keypath)
