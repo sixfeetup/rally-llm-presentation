@@ -105,7 +105,7 @@ def loop(k=3):
         if not query:
             query = prompt_session.prompt(
                 [
-                    ("class:prompt", "\nPrompt (q to quit): "),
+                    ("class:prompt", "\n\nPrompt (q to quit): "),
                 ],
                 style=Style.from_dict(
                     {
