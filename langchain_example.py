@@ -21,8 +21,8 @@ from langchain.vectorstores import Chroma
 logger = logging.getLogger(__name__)
 
 # Enable to save to disk & reuse the model (for repeated runs on the same data)
-PERSIST = False  # True  # False
-STREAMING = False  # True
+PERSIST = True  # False
+STREAMING = True
 DEBUG = False
 MODEL = "gpt-4"  # "gpt-3.5-turbo",
 
