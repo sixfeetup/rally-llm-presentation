@@ -18,6 +18,12 @@ from langchain.llms import OpenAI
 from langchain.schema import AgentAction, LLMResult
 from langchain.vectorstores import Chroma
 
+from prompt_toolkit import prompt as input
+from prompt_toolkit import PromptSession
+from prompt_toolkit.styles import Style
+
+#
+
 logger = logging.getLogger(__name__)
 
 # Enable to save to disk & reuse the model (for repeated runs on the same data)
@@ -92,9 +98,21 @@ def loop(k=3):
     # chain.retriever.return_source_documents = True
 
     chat_history = []  # the simplest memory possible
+    prompt_session = PromptSession(
+        enable_history_search=True,
+    )
     while True:
         if not query:
-            query = input("\nPrompt (q to quit): ")
+            query = prompt_session.prompt(
+                [
+                    ("class:prompt", "\nPrompt (q to quit): "),
+                ],
+                style=Style.from_dict(
+                    {
+                        "prompt": "#00ff66",
+                    }
+                ),
+            )
         if query in ["quit", "q", "exit"]:
             sys.exit()
 
