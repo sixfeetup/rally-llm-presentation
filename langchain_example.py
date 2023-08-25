@@ -64,21 +64,27 @@ def loop(k=3):
 
     if PERSIST:
         if os.path.exists("persist"):
-            print("Reusing index...\n")
+            print("Loading index...\n")
 
-            vectorstore = Chroma(
+            persistent_vectorstore = Chroma(
                 persist_directory="persist", embedding_function=OpenAIEmbeddings()
             )
+            index = VectorStoreIndexWrapper(vectorstore=persistent_vectorstore)
+
         else:
             print("Creating index...\n")
-
-            new_index = VectorstoreIndexCreator().from_loaders([loader])
-            new_index.vectorstore.persist("persist")
-            vectorstore = new_index.vectorstore
-
-        index = VectorStoreIndexWrapper(vectorstore=vectorstore)
+            vsic = VectorstoreIndexCreator(
+                vectorstore_cls=Chroma,
+                vectorstore_kwargs={
+                    # "persist": True,
+                    "persist_directory": "persist",
+                    # "embedding_function": OpenAIEmbeddings(),
+                },
+            )
+            index = vsic.from_loaders([loader])
 
     else:
+        print("creating in-memory index...\n")
         index = VectorstoreIndexCreator().from_loaders([loader])
 
     chain = ConversationalRetrievalChain.from_llm(
@@ -119,11 +125,10 @@ def loop(k=3):
         # debugging the retrieval
         if PERSIST:
             # for the persisted chromadb
-            found_docs = vectorstore.max_marginal_relevance_search(
+            found_docs = index.vectorstore.max_marginal_relevance_search(
                 query, k=k, fetch_k=20
             )
         else:
-            # breakpoint()
             found_docs = chain.retriever._get_relevant_documents(
                 query, run_manager=chain.callback_manager
             )
