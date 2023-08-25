@@ -17,10 +17,13 @@ from langchain.indexes.vectorstore import VectorStoreIndexWrapper
 from langchain.llms import OpenAI
 from langchain.schema import AgentAction, LLMResult
 from langchain.vectorstores import Chroma
-
-from prompt_toolkit import prompt as input
 from prompt_toolkit import PromptSession
+from prompt_toolkit import prompt as input
+from prompt_toolkit.completion import WordCompleter
 from prompt_toolkit.styles import Style
+from prompt_toolkit.key_binding import KeyBindings
+from prompt_toolkit.key_binding.bindings.vi import load_vi_bindings
+
 
 #
 
@@ -101,12 +104,25 @@ def loop(k=3):
             search_kwargs={"k": k, "return_source_documents": True}
         ),
     )
-    # chain.retriever.return_source_documents = True
 
     chat_history = []  # the simplest memory possible
     prompt_session = PromptSession(
         enable_history_search=True,
     )
+
+    conference_completer = WordCompleter(
+        [
+            "Rally Innovation",
+            "conference",
+            "talk",
+            "presentation",
+            "session",
+            "moderator",
+            "speaker",
+        ]
+    )
+    vim_bindings = load_vi_bindings()
+
     while True:
         if not query:
             query = prompt_session.prompt(
@@ -118,8 +134,12 @@ def loop(k=3):
                         "prompt": "#00ff66",
                     }
                 ),
+                completer=conference_completer,
+                complete_while_typing=False,
+                key_bindings=vim_bindings,
             )
-        if query in ["quit", "q", "exit"]:
+
+        if query in [":q", "quit", "q", "exit"]:
             sys.exit()
 
         # debugging the retrieval
