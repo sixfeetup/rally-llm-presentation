@@ -1,6 +1,28 @@
-# for the naive demos
+
+## secondary pins
+chromadb==0.4.6d
+langchain==0.0.267  # no help
+langsmith==0.0.24
+pandas==2.0.3
+Pillow==10.0.0
+protobuf==4.24.0 
+pulsar-client==3.2.0 
+python-pptx==0.6.21 
+watchfiles==0.19.0
+bs4==0.0.1 
+importlib-metadata==6.8.0 
+openapi-schema-pydantic==1.2.4
+zipp==3.16.2    
+
+# primary pins
 llm==0.5
 
-
-
+# unstructured==0.8.8. # was missing, but no help
+# chroma requires sqlite3 3.35.0 or better.   we got 3.31.1-4ubuntu0.5 by default, but chromadb did not complain.  c
+# sudo apt update
+# sudo apt upgrade
+# conda install sqlite=3.41.2
+# see: https://docs.trychroma.com/troubleshooting#sqlite
+# see https://github.com/coleifer/pysqlite3#building-a-statically-linked-library
+# pip install pysqlite3-binary
 

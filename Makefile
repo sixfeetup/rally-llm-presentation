@@ -17,6 +17,28 @@ check: ## System check
 	@python -c "import sys; assert sys.version_info >= (3,9), 'You need at least python 3.9'"
 	@echo "$(GREEN)Looks good.$(END)"
 
+.PHONY: check
+
+check2:
+	@if ! command -v sqlite3 ; then \
+		echo "sqlite3 is not installed."; \
+		exit 1; \
+	else \
+		echo "sqlite3 is installed" ; \
+	fi
+
+	SQLITE_VERSION=$$(sqlite3 --version | awk '{print $$1}'); \
+	echo "SQLITE_VERSION == $${SQLITE_VERSION}"; \
+	IFS='.';  \
+	VERSION_NUMS=$$(echo "$$SQLITE_VERSION" | tr "." " ") ; \
+	if [[ $${VERSION_NUMS[0]} -gt 3 ]] || \
+	   [[ $${VERSION_NUMS[0]} -eq 3 && $${VERSION_NUMS[1]} -ge 35 ]]; then \
+		echo "sqlite3 version is $$SQLITE_VERSION which is 3.35.0 or better."; \
+	else \
+		echo "sqlite3 version is $$SQLITE_VERSION which is less than 3.35.0."; \
+		exit 2; \
+	fi
+
 .llm_venv:
 	@echo "$(GREEN)Setting up llm environment...$(END)"
 	python -m venv .llm_venv
@@ -63,7 +85,7 @@ ask-orca-mini: ## Ask a question using the orca-mini-7b model.
 	@echo "$(GREEN)... Done.$(END)"
 
 ## Intermediate
-as-code:  ## LLM use as code
+as-code: .llm_venv/bin/python  ## LLM use as code
 	llm keys path
 	.llm_venv/bin/python as_code.py
 
@@ -91,7 +113,7 @@ extract: data  ## crawl the site and extract the data
 
 
 
-langchain-example: data ## LLM use as code using langchain with more control over the process.
+langchain-example: .langchain_venv data ## LLM use as code using langchain with more control over the process.
 	.langchain_venv/bin/python langchain_example.py
 
 ## Advanced
