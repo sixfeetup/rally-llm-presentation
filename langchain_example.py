@@ -30,7 +30,7 @@ from prompt_toolkit.key_binding.bindings.vi import load_vi_bindings
 logger = logging.getLogger(__name__)
 
 # Enable to save to disk & reuse the model (for repeated runs on the same data)
-PERSIST = True  # False
+PERSIST = False  # False
 STREAMING = True
 DEBUG = False
 MODEL = "gpt-4"  # "gpt-3.5-turbo",
