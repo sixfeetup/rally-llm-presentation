@@ -49,6 +49,7 @@ clean:
 setup: check .langchain_venv .llm_venv persist lynx ## Setup the development environment.  You should only have to run this once.
 	@echo "$(GREEN)Setting up development environment...$(END)"
 	@echo
+	@cp -r canned_index/* persist
 	@echo
 	@echo "Now you need your OpenAI API key.  Go to https://beta.openai.com/account/api-keys and create a new key."
 	@.llm_venv/bin/llm keys set openai
