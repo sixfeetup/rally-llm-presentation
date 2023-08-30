@@ -71,8 +71,8 @@ ask-orca-mini: ## Ask a question using the orca-mini-7b model.
 
 ## Intermediate
 as-code:  ## LLM use as code
-	.llm_venv/bin/llm keys path
-	.llm_venv/bin/python as_code.py
+	@.llm_venv/bin/llm keys path
+	@.llm_venv/bin/python as_code.py
 
 data:
 	@echo "$(GREEN)Setting up rally data...$(END)"
