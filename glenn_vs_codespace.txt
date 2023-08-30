@@ -1,0 +1,15 @@
+chromadb==0.4.6						      |	chromadb==0.4.8
+langchain==0.0.267					      |	langchain==0.0.277
+langsmith==0.0.24					      |	langsmith==0.0.29
+pandas==2.0.3						      |	pandas==2.1.0
+Pillow==10.0.0						      |	Pillow==9.5.0
+protobuf==4.24.0					      |	protobuf==4.24.2
+pulsar-client==3.2.0					      |	pulsar-client==3.3.0
+python-pptx==0.6.21					      |	python-pptx==0.6.22
+watchfiles==0.19.0					      |	watchfiles==0.20.0
+bs4==0.0.1						      <
+importlib-metadata==6.8.0				      <
+openapi-schema-pydantic==1.2.4				      <
+zipp==3.16.2						      <
+							      >	bcrypt==4.0.1
+							      >	greenlet==2.0.2
