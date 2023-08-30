@@ -1,8 +1,6 @@
 {
-  "image": "mcr.microsoft.com/devcontainers/universal:2",
-  "features": {
-    "ghcr.io/warrenbuckley/codespace-features/sqlite:latest": {} 
-  }
+  "image": "mcr.microsoft.com/devcontainers/python:3.11-bookworm",
+  "features": {}
 }
 // Setting up llm environment...
 //python -m venv .llm_venv
