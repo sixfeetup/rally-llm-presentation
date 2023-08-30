@@ -6,7 +6,7 @@ import llm
 
 def get_local_credentials():
 
-    keypath = subprocess.check_output( "llm keys path".split(), text=True).strip()
+    keypath = subprocess.check_output( ".llm_venv/bin/llm keys path".split(), text=True).strip()
     print(keypath)
     with open(keypath) as f:
         return json.load(f)["openai"]
