@@ -1,6 +1,22 @@
 {
   "image": "mcr.microsoft.com/devcontainers/universal:2",
   "features": {
-    "ghcr.io/warrenbuckley/codespace-features/sqlite:latest": {}
+    "ghcr.io/warrenbuckley/codespace-features/sqlite:latest": {} 
   }
 }
+// Setting up llm environment...
+//python -m venv .llm_venv
+// .llm_venv/bin/python -m pip install --upgrade pip
+/* Requirement already satisfied: pip in ./.llm_venv/lib/python3.10/site-packages (22.2.2)
+Collecting pip
+  Using cached pip-23.2.1-py3-none-any.whl (2.1 MB)
+Installing collected packages: pip
+  Attempting uninstall: pip
+    Found existing installation: pip 22.2.2
+    Uninstalling pip-22.2.2:
+      Successfully uninstalled pip-22.2.2
+Successfully installed pip-23.2.1
+.llm_venv/bin/pip install -r llm-requirements.txt
+ERROR: Could not find a version that satisfies the requirement chromadb==0.4.6d (from versions: 0.0.3.dev234, 0.0.3.dev332, 0.0.3.dev335, 0.1.dev360, 0.1.dev361, 0.1.dev362, 0.1.dev363, 0.1.dev364, 0.1.dev365, 0.1.0, 0.2.0, 0.3.0, 0.3.1, 0.3.2, 0.3.3, 0.3.4, 0.3.5, 0.3.6, 0.3.7, 0.3.8, 0.3.10, 0.3.11, 0.3.12, 0.3.13, 0.3.14, 0.3.15, 0.3.16, 0.3.17, 0.3.18, 0.3.20, 0.3.21, 0.3.22, 0.3.23, 0.3.25, 0.3.26, 0.3.27, 0.3.29, 0.4.0, 0.4.1, 0.4.2, 0.4.3, 0.4.4, 0.4.5, 0.4.6, 0.4.7, 0.4.8)
+ERROR: No matching distribution found for chromadb==0.4.6d
+*/
