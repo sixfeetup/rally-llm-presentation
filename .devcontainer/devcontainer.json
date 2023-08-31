@@ -1,0 +1,6 @@
+{
+    "image": "mcr.microsoft.com/devcontainers/python:3.11-bookworm",
+    "hostRequirements": {"cpus": 4},
+    "postCreateCommand": "apt-get update && apt-get install -y lynx",
+    "remoteUser": "root"
+}

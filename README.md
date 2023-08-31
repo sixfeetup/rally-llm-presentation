@@ -85,7 +85,7 @@ Once checked out, run:
 
    $ make setup
 
-   $ source ./.venv/bin/activate
+   $ source ./.langchain_venv/bin/activate
 
 
 

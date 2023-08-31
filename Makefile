@@ -17,6 +17,9 @@ check: ## System check
 	@python -c "import sys; assert sys.version_info >= (3,9), 'You need at least python 3.9'"
 	@echo "$(GREEN)Looks good.$(END)"
 
+persist:
+	@mkdir persist
+
 .llm_venv:
 	@echo "$(GREEN)Setting up llm environment...$(END)"
 	python -m venv .llm_venv
@@ -33,15 +36,20 @@ check: ## System check
 	@echo "$(GREEN)... Done.$(END)"
 	@echo
 
+lynx:
+	@sudo apt update
+	@sudo apt install lynx
+
 clean:
 	-rm -rf .langchain_ven
 	-rm -rf .llm_venv
 	-rm -rf data
 	-rm -rf persist
 
-setup: check .langchain_venv .llm_venv   ## Setup the development environment.  You should only have to run this once.
+setup: check .langchain_venv .llm_venv persist lynx ## Setup the development environment.  You should only have to run this once.
 	@echo "$(GREEN)Setting up development environment...$(END)"
 	@echo
+	@cp -r canned_index/* persist
 	@echo
 	@echo "Now you need your OpenAI API key.  Go to https://beta.openai.com/account/api-keys and create a new key."
 	@.llm_venv/bin/llm keys set openai
@@ -64,8 +72,8 @@ ask-orca-mini: ## Ask a question using the orca-mini-7b model.
 
 ## Intermediate
 as-code:  ## LLM use as code
-	llm keys path
-	.llm_venv/bin/python as_code.py
+	@.llm_venv/bin/llm keys path
+	@.llm_venv/bin/python as_code.py
 
 data:
 	@echo "$(GREEN)Setting up rally data...$(END)"
@@ -91,11 +99,11 @@ extract: data  ## crawl the site and extract the data
 
 
 
-langchain-example: data ## LLM use as code using langchain with more control over the process.
+langchain-example: data persist  ## LLM use as code using langchain with more control over the process.
 	.langchain_venv/bin/python langchain_example.py
 
 ## Advanced
-contact:  ## Contact us to productionize.
+contact:  ## Contact us to make more than toys.
 	@echo "We can be reached at $(BLUE)https://sixfeetup.com$(END)."
 
 ## Documentation

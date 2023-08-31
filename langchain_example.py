@@ -1,24 +1,46 @@
 #! env python
-import asyncio
+
 import json
+import logging
 import os
 import subprocess
 import sys
+from typing import Any
 
-import openai
+from langchain.callbacks.streaming_stdout import StreamingStdOutCallbackHandler
 from langchain.chains import ConversationalRetrievalChain, RetrievalQA
 from langchain.chat_models import ChatOpenAI
-from langchain.document_loaders import DirectoryLoader, TextLoader
+from langchain.document_loaders import DirectoryLoader
 from langchain.embeddings import OpenAIEmbeddings
 from langchain.indexes import VectorstoreIndexCreator
 from langchain.indexes.vectorstore import VectorStoreIndexWrapper
 from langchain.llms import OpenAI
+from langchain.schema import AgentAction, LLMResult
 from langchain.vectorstores import Chroma
+from prompt_toolkit import PromptSession
+from prompt_toolkit import prompt as input
+from prompt_toolkit.completion import WordCompleter
+from prompt_toolkit.styles import Style
+from prompt_toolkit.key_binding import KeyBindings
+from prompt_toolkit.key_binding.bindings.vi import load_vi_bindings
 
-# Enable to save to disk & reuse the model (for repeated queries on the same data)
-# PERSIST = True
-PERSIST = False
+
+#
+
+logger = logging.getLogger(__name__)
+
+# Enable to save to disk & reuse the model (for repeated runs on the same data)
+PERSIST = True  # False
+STREAMING = True
 DEBUG = False
+MODEL = "gpt-4"  # "gpt-3.5-turbo",
+
+
+class StreamTokenMetaData(StreamingStdOutCallbackHandler):
+    def on_llm_new_token(self, token: str, **kwargs: Any) -> None:
+        """Run on new LLM token. Only available when streaming is enabled."""
+        sys.stdout.write(f" {kwargs=}")
+        sys.stdout.flush()
 
 
 def get_local_credentials():
@@ -31,7 +53,7 @@ def get_local_credentials():
         return json.load(f)["openai"]
 
 
-async def loop(k=3):
+def loop(k=3):
     os.environ["OPENAI_API_KEY"] = os.environ.get(
         "OPENAI_API_KEY", get_local_credentials()
     )
@@ -40,47 +62,93 @@ async def loop(k=3):
     if len(sys.argv) > 1:
         query = sys.argv[1]
 
-    # loader = TextLoader("data/data.txt") # Use this line if you only need data.txt
+    # loader = TextLoader("data/data.txt")
     loader = DirectoryLoader("data/", recursive=True, show_progress=True, glob="*.txt")
 
-    if PERSIST and os.path.exists("persist"):
-        print("Reusing index...\n")
+    if PERSIST:
+        if os.path.exists("persist"):
+            print("Loading index...\n")
 
-        vectorstore = Chroma(
-            persist_directory="persist", embedding_function=OpenAIEmbeddings()
-        )
-        index = VectorStoreIndexWrapper(vectorstore=vectorstore).from_loaders([loader])
+            persistent_vectorstore = Chroma(
+                persist_directory="persist", embedding_function=OpenAIEmbeddings()
+            )
+            index = VectorStoreIndexWrapper(vectorstore=persistent_vectorstore)
+
+        else:
+            print("Creating index...\n")
+            vsic = VectorstoreIndexCreator(
+                vectorstore_cls=Chroma,
+                vectorstore_kwargs={
+                    # "persist": True,
+                    "persist_directory": "persist",
+                    # "embedding_function": OpenAIEmbeddings(),
+                },
+            )
+            index = vsic.from_loaders([loader])
+
     else:
+        print("creating in-memory index...\n")
         index = VectorstoreIndexCreator().from_loaders([loader])
 
     chain = ConversationalRetrievalChain.from_llm(
-        llm=ChatOpenAI(model="gpt-4"),  # "gpt-3.5-turbo"),
+        llm=ChatOpenAI(
+            model=MODEL,
+            streaming=STREAMING,
+            callbacks=[
+                StreamingStdOutCallbackHandler(),
+                # StreamTokenMetaData(),
+            ],
+            temperature=0.0,
+        ),
         retriever=index.vectorstore.as_retriever(
             search_kwargs={"k": k, "return_source_documents": True}
         ),
     )
-    # chain.retriever.return_source_documents = True
 
     chat_history = []  # the simplest memory possible
+    prompt_session = PromptSession(
+        enable_history_search=True,
+    )
+
+    conference_completer = WordCompleter(
+        [
+            "Rally Innovation",
+            "conference",
+            "talk",
+            "presentation",
+            "session",
+            "moderator",
+            "speaker",
+        ]
+    )
+    vim_bindings = load_vi_bindings()
+
     while True:
         if not query:
-            query = input("\nPrompt: ")
-        if query in ["quit", "q", "exit"]:
-            sys.exit()
+            query = prompt_session.prompt(
+                [
+                    ("class:prompt", "\n\nPrompt (q to quit): "),
+                ],
+                style=Style.from_dict(
+                    {
+                        "prompt": "#00ff66",
+                    }
+                ),
+                completer=conference_completer,
+                complete_while_typing=False,
+                key_bindings=vim_bindings,
+            )
 
-        query = (
-            "Moderators are speakers. Talks, presentations and sessions are the same thing. "
-            + query
-        )
+        if query in [":q", "quit", "q", "exit"]:
+            sys.exit()
 
         # debugging the retrieval
         if PERSIST:
             # for the persisted chromadb
-            found_docs = await vectorstore.amax_marginal_relevance_search(
-                query, k=k, fetch_k=10
+            found_docs = index.vectorstore.max_marginal_relevance_search(
+                query, k=k, fetch_k=20
             )
         else:
-            # breakpoint()
             found_docs = chain.retriever._get_relevant_documents(
                 query, run_manager=chain.callback_manager
             )
@@ -89,17 +157,23 @@ async def loop(k=3):
             for i, doc in enumerate(found_docs):
                 print(f"DEBUG: {i + 1}.", doc.page_content, "\n", file=sys.stderr)
 
-        result = chain({"question": query, "chat_history": chat_history})
-        print(result["answer"])
+        result = chain(
+            {
+                "system": f"Moderators are speakers."
+                f"  Talks, presentations and sessions are the same thing."
+                " Remember to answer the question. DO NOT ask questions.",
+                "question": f"  {query}",
+                "chat_history": chat_history,
+            }
+        )
+        if not STREAMING:
+            print(result["answer"])
 
         chat_history.append((query, result["answer"]))
         query = None
 
 
-import logging
-import os
-
 if __name__ == "__main__":
     LOGLEVEL = os.environ.get("LOGLEVEL", "WARNING").upper()
     logging.basicConfig(level=LOGLEVEL)
-    asyncio.run(loop(k=10))
+    loop(k=10)
