@@ -36,17 +36,13 @@ persist:
 	@echo "$(GREEN)... Done.$(END)"
 	@echo
 
-lynx:
-	@sudo apt update
-	@sudo apt install lynx
-
 clean:
 	-rm -rf .langchain_ven
 	-rm -rf .llm_venv
 	-rm -rf data
 	-rm -rf persist
 
-setup: check .langchain_venv .llm_venv persist lynx ## Setup the development environment.  You should only have to run this once.
+setup: check .langchain_venv .llm_venv persist ## Setup the development environment.  You should only have to run this once.
 	@echo "$(GREEN)Setting up development environment...$(END)"
 	@echo
 	@cp -r canned_index/* persist
