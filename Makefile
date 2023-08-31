@@ -1,4 +1,4 @@
-.PHONY: help
+.PHONY: help clean clean-reveal start watch
 
 .EXPORT_ALL_VARIABLES:
 
@@ -106,6 +106,53 @@ contact:  ## Contact us to make more than toys.
 help:  ## Render the readme and getting started guide.
 	@mdn README.md || cat README.md
 
+slide-theme := minions_dark
+
+index.html: slides.md js/reveal.js dist/theme/$(slide-theme).css ## build presentation and theme
+	pandoc -t revealjs -s -V revealjs-url=. \
+		-V theme=$(slide-theme) \
+		-V width=1200 \
+		-V center=false \
+		-V autoPlayMedia=false \
+		-V hash=true \
+		-o "$@" "$<"
+
+js/reveal.js:
+	curl -LO https://github.com/hakimel/reveal.js/archive/master.zip
+	bsdtar --strip-components=1 --exclude .gitignore --exclude LICENSE --exclude README.md --exclude demo.html --exclude index.html -xf master.zip
+	rm master.zip
+	npm install
+
+css/theme/source/$(slide-theme).scss: themes/$(slide-theme).scss
+	cp "$<" "$@"
+
+dist/theme/$(slide-theme).css: css/theme/source/$(slide-theme).scss
+	npm run build -- css-themes
+
+start: index.html ## bulid presentation and start server
+	@echo "Starting the local presentation server 🚀"
+	@npm start
+
+clean-reveal: ## clean up the working directory
+	rm CONTRIBUTING.md || true
+	rm LICENSE || true
+	rm .npmignore || true
+	rm -rf css/ || true
+	rm gulpfile.js || true
+	rm index.html || true
+	rm -rf examples/ || true
+	rm -rf js/ || true
+	rm -rf lib/ || true
+	rm package-lock.json || true
+	rm package.json || true
+	rm -rf plugin/ || true
+	rm -rf test/ || true
+	rm -rf node_modules/ || true
+	rm -rf dist/ || true
+
+watch: ## Watch for changes and rebuild
+	@echo "♻️ Watching for changes..."
+	@watchmedo tricks-from tricks.yaml
 
 usage: ## This help.
 	@awk 'BEGIN     { FS = ":.*##"; target="";printf "\nUsage:\n  make $(BLUE)<target>\033[33m\n\nTargets:$(END)" } \

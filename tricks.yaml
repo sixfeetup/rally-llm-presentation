@@ -1,0 +1,4 @@
+tricks:
+- watchdog.tricks.ShellCommandTrick:
+    patterns: ['*.md']
+    shell_command: make
