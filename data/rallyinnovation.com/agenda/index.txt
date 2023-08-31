@@ -1,4 +1,4 @@
-   #Rally - Innovation Conference » Feed alternate alternate alternate
+   #Rally - Innovation Conference � Feed alternate alternate alternate
 
    IFRAME: https://www.googletagmanager.com/ns.html?id=GTM-TNX4FQS
 
@@ -108,7 +108,7 @@ Welcome to Rally - Christopher "Toph" Day
 
    MORE INFO
 
-Christopher “Toph” Day CEO / Elevate Ventures
+Christopher "Toph" Day CEO / Elevate Ventures
 
 8:45am - 8:55am
 
@@ -147,7 +147,7 @@ Association
 
 10am - 10:45am
 
-ITIA - What’s Next to Accelerate Indiana’s Tech and Innovation Industry
+ITIA - What's Next to Accelerate Indiana's Tech and Innovation Industry
 
    MORE INFO
 
@@ -155,7 +155,7 @@ Governor Eric J. Holcomb State of Indiana
 
 David BeckerChairman and CEO / First Internet Bank
 
-Christopher “Toph” Day CEO / Elevate Ventures
+Christopher "Toph" Day CEO / Elevate Ventures
 
 Ting GooteePresident & CEO / TechPoint
 
@@ -319,7 +319,7 @@ Content That Actually Works
 
 Ryan Brock Chief Solution Officer / DemandJump
 
-Christopher “Toph” Day CEO / Elevate Ventures
+Christopher "Toph" Day CEO / Elevate Ventures
 
 11am - 11:45am Ag & Food
 
@@ -576,7 +576,7 @@ Samantha Wolfe Founder / PitchFWD
 
 2:30pm - 2:45pm
 
-Book Signing – Metaversed: See Beyond the Hype
+Book Signing - Metaversed: See Beyond the Hype
 
    MORE INFO
 
@@ -584,7 +584,7 @@ Samantha Wolfe Founder / PitchFWD
 
 2:30pm - 2:45pm
 
-Book Signing – Accelerated: A Guide to Innovating at the Speed of Change
+Book Signing - Accelerated: A Guide to Innovating at the Speed of Change
 
    MORE INFO
 
@@ -630,7 +630,7 @@ Keynote - Fireside Chat with Guy Raz
 
 Guy Raz Keynote
 
-Christopher “Toph” Day CEO / Elevate Ventures
+Christopher "Toph" Day CEO / Elevate Ventures
 
 10am - 10:45am
 
@@ -654,7 +654,7 @@ IN-Prize Pitch Competition (Ag & Food Studio)
 
    MORE INFO
 
-Scott Beck President / Beck’s Hybrids
+Scott Beck President / Beck's Hybrids
 
 Kelli Jones Co-Founder / Be Nimble Foundation
 
@@ -692,7 +692,7 @@ Governor Eric J. Holcomb State of Indiana
 
 10am - 10:45am
 
-Meetup – Cybersecurity: Hosted by Blackink IT
+Meetup - Cybersecurity: Hosted by Blackink IT
 
    MORE INFO
 
@@ -753,7 +753,7 @@ Matthew VersaggiSr. Dir. of Artificial Intelligence and Cognitive Technology
 
 10am - 10:45am Software
 
-Software Defined Vehicles – The Digital Revolution Hits the Road
+Software Defined Vehicles - The Digital Revolution Hits the Road
 
    MORE INFO
 
@@ -786,7 +786,7 @@ Speak-Up Culture
 
 Kirsten MoorefieldCo-founder & COO / Cloverleaf
 
-Stephen “Shed” Shedletzky Founder & Coach / Shed Inspires
+Stephen "Shed" Shedletzky Founder & Coach / Shed Inspires
 
 Lindsay Tjepkema CEO & Co-Founder / Casted
 
@@ -864,7 +864,7 @@ Beyond Earth: Unleashing the Entrepreneurial Spirit in Space
 
 Alex Fielding CEO / Privateer Space
 
-Janet Ivey Duensing CEO & Chief Creative Officer / Janet’s Planet, Inc.
+Janet Ivey Duensing CEO & Chief Creative Officer / Janet's Planet, Inc.
 
 Vera MulyaniPresident / Mars City Design & Astrobiome
 
@@ -1008,7 +1008,7 @@ Nestor Gomez Chief Technology Officer / Canadian Food Innovation Network
 
 Riana Lynn CEO / Journey Foods
 
-Gary O’Meara CEO / Boyne Valley Food Innovation
+Gary O'Meara CEO / Boyne Valley Food Innovation
 
 Michael Swanson Agricultural Economist / Wells Fargo
 
@@ -1036,7 +1036,7 @@ Sue Schneider VP, Growth & Strategy, Americas / SBC Gaming
 
 1:45pm - 2:30pm Hardtech
 
-What’s So Hard About Hardtech?
+What's So Hard About Hardtech?
 
    MORE INFO
 
@@ -1163,7 +1163,7 @@ Visioning for Social Impact
 
    MORE INFO
 
-Dallas McGhee-HenryCommunity Partnerships Manager / University of Michigan –
+Dallas McGhee-HenryCommunity Partnerships Manager / University of Michigan -
 College of Literature Science and the Arts
 
 Jeni OlneyDirector for Social Innovation & Entrepreneurship / University of
@@ -1264,7 +1264,7 @@ Accelerating AgTech Adoption
 
    MORE INFO
 
-Lorna Baird Manager – Entrepreneurship & Innovation / Olds College of
+Lorna Baird Manager - Entrepreneurship & Innovation / Olds College of
 Agriculture and Technology
 
 Ken Doyle Executive Director / Tech-Access Canada
@@ -1394,7 +1394,7 @@ Keynote - Earvin "Magic" Johnson
 
    MORE INFO
 
-Earvin “Magic” Johnson Keynote
+Earvin "Magic" Johnson Keynote
 
    AG & FOOD
 
@@ -1449,7 +1449,7 @@ IN-Prize Pitch Competition (Ag & Food Studio)
 
    MORE INFO
 
-Scott Beck President / Beck’s Hybrids
+Scott Beck President / Beck's Hybrids
 
 Kelli Jones Co-Founder / Be Nimble Foundation
 
@@ -1500,7 +1500,7 @@ Nestor Gomez Chief Technology Officer / Canadian Food Innovation Network
 
 Riana Lynn CEO / Journey Foods
 
-Gary O’Meara CEO / Boyne Valley Food Innovation
+Gary O'Meara CEO / Boyne Valley Food Innovation
 
 Michael Swanson Agricultural Economist / Wells Fargo
 
@@ -1527,7 +1527,7 @@ Accelerating AgTech Adoption
 
    MORE INFO
 
-Lorna Baird Manager – Entrepreneurship & Innovation / Olds College of
+Lorna Baird Manager - Entrepreneurship & Innovation / Olds College of
 Agriculture and Technology
 
 Ken Doyle Executive Director / Tech-Access Canada
@@ -1765,7 +1765,7 @@ Selika Talbott President / Autonomous Vehicle Consulting, LLC
 
 1:45pm - 2:30pm Hardtech
 
-What’s So Hard About Hardtech?
+What's So Hard About Hardtech?
 
    MORE INFO
 
@@ -1874,7 +1874,7 @@ Markeith Price Founder & CEO / Move Progress
 
 10am - 10:45am Software
 
-Software Defined Vehicles – The Digital Revolution Hits the Road
+Software Defined Vehicles - The Digital Revolution Hits the Road
 
    MORE INFO
 
@@ -2175,7 +2175,7 @@ Speak-Up Culture
 
 Kirsten MoorefieldCo-founder & COO / Cloverleaf
 
-Stephen “Shed” Shedletzky Founder & Coach / Shed Inspires
+Stephen "Shed" Shedletzky Founder & Coach / Shed Inspires
 
 Lindsay Tjepkema CEO & Co-Founder / Casted
 
@@ -2189,7 +2189,7 @@ Beyond Earth: Unleashing the Entrepreneurial Spirit in Space
 
 Alex Fielding CEO / Privateer Space
 
-Janet Ivey Duensing CEO & Chief Creative Officer / Janet’s Planet, Inc.
+Janet Ivey Duensing CEO & Chief Creative Officer / Janet's Planet, Inc.
 
 Vera MulyaniPresident / Mars City Design & Astrobiome
 
