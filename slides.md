@@ -4,7 +4,7 @@ pagetitle: Innovate with AI
 author: Calvin Hendryx-Parker, CTO, Six Feet Up
 author-meta:
     - Calvin Hendryx-Parker
-date: Rally Innovation 2023
+date: October 2023
 date-meta: 2023
 keywords:
     - Python
